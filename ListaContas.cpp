@@ -1,8 +1,8 @@
 #include <iostream>
 #include "ListaContas.h"
-
-
 using namespace std;
+ListaAmigos la;
+ListaPosts lp;
 
 ListaContas::ListaContas()
 {
@@ -32,10 +32,26 @@ bool ListaContas::existeConta(string nomeUsuario)
 	}
 	return find;
 }
-
-void ListaContas::inserirConta(string nome,string apelido,string senha,string pais,string dataNascimento)
+bool ListaContas::validarCredencial(string nomeUsuario,string senha)
 {
-	Contas *percorre=inicio;//apontador que percorre a lista apartir do inicio 
+	Contas *percorre=inicio;
+	bool find=false;
+	if(listaVazia()){cout<<"Nao existem Contas"<<endl;}
+	else
+	{
+		while(percorre!=NULL &&find==false)
+		{
+			if(percorre->nomeUsuario==nomeUsuario&&percorre->senha==senha)
+				find=true;
+			percorre=percorre->next;
+		}
+	}
+	return find;
+}
+
+void ListaContas::inserirConta(string nome,string apelido,string nomeUsuario,string senha,string pais,string dataNascimento)
+{
+	Contas *percorre=inicio;//apontador que percorre a lista apartir do inicio
 	Contas *novaConta=new Contas;//apontador para a nova conta
 	novaConta->nomeUsuario=nome+apelido;
 	novaConta->nome=nome;
@@ -43,10 +59,8 @@ void ListaContas::inserirConta(string nome,string apelido,string senha,string pa
 	novaConta->senha=senha;
 	novaConta->pais=pais;
 	novaConta->dataNascimento=dataNascimento;
-	novaConta->amigos=NULL;
-	novaConta->posts=NULL;
-	novaConta->next=NULL;
-	
+
+
 	if(listaVazia())
 	{
 		inicio=novaConta;
@@ -59,10 +73,28 @@ void ListaContas::inserirConta(string nome,string apelido,string senha,string pa
 			while(percorre->next!=NULL){percorre=percorre->next;}//Assignment responsavel por percorrer a lista
 			percorre->next=novaConta;//Adiciona o elemento ao fim da lista
 			cout<<"nova Conta: "<<novaConta->nomeUsuario<<" Adicionada com sucesso"<<endl;
-			totalContas++;			
+			totalContas++;
 	}
 	else
 		cout<<"Esta Conta ja existe"<<endl;
+}
+
+void ListaContas::visualizarConta(string nomeUsuario)
+{
+	Contas *percorre=inicio;
+	bool find=false;
+	if(!existeConta(nomeUsuario))
+		cout<<"Usuario invalido"<<endl;
+	else
+	{
+		while(percorre!=NULL&&find==false)
+		{
+			if(percorre->nomeUsuario==nomeUsuario)
+				find=true;
+			percorre=percorre->next;
+		}
+		cout<<"usuario: "<<percorre->nomeUsuario<<"\tpais: "<<percorre->pais<<"\tdata de nascimento: "<<percorre->dataNascimento<<endl;
+	}
 }
 void ListaContas::listarContas()
 {
@@ -91,7 +123,7 @@ void ListaContas::removerUmaConta(string nomeUsuario)
 				inicio=inicio->next;//substituir o inicio pela conta seguinte
 				stop=true;
 			}
-		
+
 			else if(apagar->nomeUsuario==nomeUsuario)
 			{
 				anterior->next=apagar->next;//Substitui a Conta removida pela Conta seguinte juntando o Conta seguinte  a Conta anterior
@@ -110,15 +142,46 @@ int ListaContas::quantidadeDeContas()
 {
 	return totalContas;
 }
-
-int main()
+//Adapter design pattern para Comunicar com amigos
+void ListaContas::adpAdicionarAmigo(string nomeUsuario)//Adapter Design Pattern
 {
-	ListaContas lc;
-	lc.inserirConta("nome1","apelido1","senha1","pais1","dataNascimento1");
-	lc.inserirConta("nome2","apelido2","senha2","pais2","dataNascimento2");
-	lc.inserirConta("nome3","apelido3","senha3","pais3","dataNascimento3");
-	lc.listarContas();
-	lc.removerUmaConta("nome1apelido1");
-	lc.listarContas();
-	return 0;
+		la.inserirAmigo(nomeUsuario);
+}
+void ListaContas::adpRemoverAmigo(string nomeUsuario)
+{
+	la.removerUmAmigo(nomeUsuario);
+}
+
+void ListaContas::adpVisualizarAmigo(string nomeUsuario)
+{
+	la.visualizarAmigo(nomeUsuario);
+}
+
+void ListaContas::adpListarAmigos()
+{
+	la.listarAmigos();
+}
+
+
+int ListaContas::adpQuantidadeDeAmigos()
+{
+	return	la.quantidadeDeAmigos();
+}
+//Adapter Design Pattern para comunicar com Posts
+
+void ListaContas::adpInserirPost(string nomeUsuario,string post)
+{
+	lp.inserirPost(nomeUsuario, post);
+}
+void ListaContas::adpListarPosts()
+{
+	lp.listarPosts();
+}
+void ListaContas::adpListarPostsDeAmigo(string nomeUsuario)
+{
+	//lp.listarPostsDeAmigo(nomeUsuario);
+}
+int ListaContas::adpQuantidadeDePosts()
+{
+	return lp.quantidadeDePosts();
 }

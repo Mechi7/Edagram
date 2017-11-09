@@ -1,0 +1,75 @@
+# depslib dependency file v1.0
+1510184095 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listapopulares.cpp
+	<iostream>
+	"ListaPopulares.h"
+
+1510153441 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listapopulares.h
+	<string>
+
+1510184815 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listatags.cpp
+	<iostream>
+	"ListaTags.h"
+
+1510184971 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listatags.h
+	<string>
+	"ListaPopulares.h"
+
+1510158056 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listapopulares.cpp
+	<iostream>
+	"ListaPopulares.h"
+
+1510188629 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listaposts.cpp
+	<iostream>
+	"ListaPosts.h"
+
+1510185669 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listaposts.h
+	<string>
+	"Validacoes.h"
+	"ListaTags.h"
+
+1510185664 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\validacoes.h
+	<string>
+
+1510185669 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\validacoes.cpp
+	<iostream>
+	"Validacoes.h"
+
+1510185867 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listaamigos.cpp
+	<iostream>
+	"ListaAmigos.h"
+
+1510185851 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listaamigos.h
+	<string>
+
+1510186162 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listacontas.cpp
+	<iostream>
+	"ListaContas.h"
+
+1510186156 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\listacontas.h
+	<string>
+	"ListaAmigos.h"
+	"ListaPosts.h"
+
+1510187495 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\menu.cpp
+	<iostream>
+	"Menu.h"
+
+1510186559 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\menu.h
+	"Validacoes.h"
+
+1510187212 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\tabelacontas.cpp
+	<iostream>
+	"TabelaContas.h"
+
+1510186877 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\tabelacontas.h
+	"ListaContas.h"
+	"Menu.h"
+
+1510189787 source:c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\login.cpp
+	<iostream>
+	<string>
+	"Login.h"
+
+1510189461 c:\aldair\isctem\2017\2semestre\eda1\mine\edagram\versao1.3\edagramv1.3\login.h
+	"TabelaContas.h"
+

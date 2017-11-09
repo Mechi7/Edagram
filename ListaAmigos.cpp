@@ -1,6 +1,5 @@
 #include <iostream>
 #include "ListaAmigos.h"
-
 using namespace std;
 
 ListaAmigos::ListaAmigos()
@@ -34,24 +33,24 @@ bool ListaAmigos::existeAmigo(string nomeUsuario)
 
 void ListaAmigos::inserirAmigo(string nomeUsuario)
 {
-	Amigos *percorre=inicio;//apontador que percorre a lista apartir do inicio 
+	Amigos *percorre=inicio;//apontador que percorre a lista apartir do inicio
 	Amigos *novoAmigo=new Amigos;//apontador para a nova conta
 	novoAmigo->nomeUsuario=nomeUsuario;
 	novoAmigo->next=NULL;
-	
+
 	if(listaVazia())
 	{
 		inicio=novoAmigo;
 		cout<<"novo Amigo: "<<novoAmigo->nomeUsuario<<" Adicionada com sucesso"<<endl;
 		totalAmigos++;
 	}
-	else if(!existeAmigo(novoAmigo->nomeUsuario))//Verifica se o Amigo ja existe
+	else if(!existeAmigo(novoAmigo->nomeUsuario))//Verifica se o Amigo ja existe na lista
 	{
 
 			while(percorre->next!=NULL){percorre=percorre->next;}//Assignment responsavel por percorrer a lista
 			percorre->next=novoAmigo;//Adiciona o elemento ao fim da lista
 			cout<<"novo Amigo: "<<novoAmigo->nomeUsuario<<" Adicionada com sucesso"<<endl;
-			totalAmigos++;			
+			totalAmigos++;
 	}
 	else
 		cout<<"Este usuario ja e nosso Amigo"<<endl;
@@ -85,7 +84,7 @@ void ListaAmigos::removerUmAmigo(string nomeUsuario)
 				inicio=inicio->next;//substituir o inicio pela conta seguinte
 				stop=true;
 			}
-		
+
 			else if(apagar->nomeUsuario==nomeUsuario)
 			{
 				anterior->next=apagar->next;//Substitui a Conta removido pelo Amigo seguinte juntando o Amigo seguinte  ao amigo anterior
@@ -101,19 +100,25 @@ void ListaAmigos::removerUmAmigo(string nomeUsuario)
 		cout<<"Amigo inexistente"<<endl;
 }
 
+void ListaAmigos::visualizarAmigo(string nomeUsuario)
+{
+	Amigos *percorre=inicio;
+	bool find=false;
+	if(!existeAmigo(nomeUsuario))
+		cout<<"Amigo invalido"<<endl;
+	else
+	{
+		while(percorre!=NULL&&find==false)
+		{
+			if(percorre->nomeUsuario==nomeUsuario)
+				find=true;
+			percorre=percorre->next;
+		}
+		cout<<"nome de usuario: "<<percorre->nomeUsuario<<endl;
+	}
+}
+
 int ListaAmigos::quantidadeDeAmigos()
 {
 	return totalAmigos;
-}
-int main()
-{
-	ListaAmigos la;
-	la.inserirAmigo("Amigo1");
-	la.inserirAmigo("Amigo1");
-	la.inserirAmigo("Amigo2");
-	la.inserirAmigo("Amigo3");
-	la.listarAmigos();
-	la.removerUmAmigo("amigo2");
-	la.listarAmigos();
-	return 0;
 }

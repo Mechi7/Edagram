@@ -16,7 +16,7 @@ class ListaAmigos
 		void inserirAmigo(std::string nomeUsuario);//inserir um amigo no fim da Lista
 		void listarAmigos();
 		void removerUmAmigo(std::string nomeUsuario);
-		void retornarAmigo(std::string nomeUsuario);
+		void visualizarAmigo(std::string nomeUsuario);
 		int quantidadeDeAmigos();
-	
+
 };
