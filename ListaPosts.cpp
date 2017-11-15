@@ -46,7 +46,7 @@ void ListaPosts::listarPosts()
 	{
 		while(percorre!=NULL)
 		{
-			cout<<"Post:\t"<<percorre->nomeUsuario<<endl;
+			cout<<"Post:\t"<<percorre->nomeUsuario<<percorre->post<<endl;
 			percorre=percorre->next;
 		}
 	}
@@ -62,13 +62,13 @@ void ListaPosts::adpInserirTag()
 {
 	string resposta=v.validarString2("s","S","n","N","Quer inserir Tags s/n?");
 	string resposta2;
-	if(resposta!="n"||resposta!="N")
+	if(resposta!="n"&&resposta!="N")
 	{
 		do
 		{
 			lt.inserirTag(v.validarString(1,20,"Introduza o nome de Usuario"));
 			resposta2=v.validarString2("s","S","n","N","Continuar s/n?");
 		}
-		while(resposta2!="n"||resposta2!="N");
+		while(resposta2!="n"&&resposta2!="N");
 	}
 }

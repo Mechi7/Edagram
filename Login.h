@@ -7,8 +7,8 @@ class Login
 	public:
 		Login();
 		void loginGeral();
-		void loginAdministrador();
-		void loginUtilizador();
+		bool loginAdministrador();
+		bool loginUtilizador();
 		void criarUsuario();
 
 

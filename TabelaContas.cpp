@@ -3,7 +3,7 @@
 
 using namespace std;
 Menu m;
-
+ListaContas lc;
 TabelaContas::TabelaContas(){}
 
 int TabelaContas::funcaoDispersao(string nomeUsuario)
@@ -50,13 +50,19 @@ bool TabelaContas::confirmarUsuario(string nomeUsuario)
 
 void TabelaContas::listarTabela()
 {
-	for(int i=0;i<27;i++)
-	{
-		tabelaDispersao[i].listarContas();
-	}
+    if(totalContasTabela()>0)
+     {
+        for(int i=0;i<27;i++)
+        {
+            if(tabelaDispersao[i].quantidadeDeContas()>0)
+                tabelaDispersao[i].listarContas();
+        }
+     }
+     else
+        cout<<"Nao existem Contas"<<endl;
 }
 
-void TabelaContas::totalContasTabela()
+int TabelaContas::totalContasTabela()
 {
 	int totalContas=0;
 	for (int i=0;i<27;i++)
@@ -64,21 +70,46 @@ void TabelaContas::totalContasTabela()
 		totalContas+=tabelaDispersao[i].quantidadeDeContas();
 	}
 
-	cout<<"Total de Contas no Sistema:\t"<<totalContas<<endl;
+	return totalContas;
 }
+
+
 /*Funcoes para  Gerir Amizades*/
 
-/*
-void TabelaContas::adicionarAmigo(string nomeUsuario,string nomeUsuarioAmigo)
+
+void TabelaContas::adicionarAmigo(string nomeAmigo)
 {//Para nao adicionarmos usuarios que nao existam no sistema tivemos que recorrer
 	//ao metodo confirmarUsuario da  classe Tabela Contas
 	//outras solucoes criavam conflitos de redefinicao de classe
-	int pos=funcaoDispersao(nomeUsuario);
-	if(confirmarUsuario(nomeUsuarioAmigo))
-    {
-        while(tabelaDispersao[pos].)
-    }
-		tabelaDispersao[pos].adpAdicionarAmigo(nomeUsuario);
+	int pos=funcaoDispersao(nomeAmigo);
+	if(tabelaDispersao[pos].existeConta(nomeAmigo))
+		lc.adpAdicionarAmigo(nomeAmigo);
+		//int pos=funcaoDispersao(nomeAmigo);
+		//tabelaDispersao[pos].adpAdicionarAmigo("Us");
 }
-*/
+
+void TabelaContas::removerAmigo(string nomeAmigo)
+{
+    int pos=funcaoDispersao(nomeAmigo);
+    if(tabelaDispersao[pos].existeConta(nomeAmigo))
+        lc.adpRemoverAmigo(nomeAmigo);
+}
+
+void TabelaContas::visualizarAmigos()
+{
+    lc.adpListarAmigos();
+}
+
+
+///////Posts
+void TabelaContas::adicionarPost(string nomeUsuario,string post)
+{
+    int pos=funcaoDispersao(nomeUsuario);
+    lc.adpInserirPost(nomeUsuario, post);
+}
+
+void TabelaContas::visualizarMural()
+{
+    lc.adpListarPosts();
+}
 
